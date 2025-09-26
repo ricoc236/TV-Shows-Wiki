@@ -39,7 +39,7 @@ const showData = [
     "rating": 8.9,
     "release_date": "1994-09-22",
     "description": "Follows the lives, relationships, and comedic adventures of six friends living in Manhattan.",
-    "image": "https://m.media-amazon.com/images/I/71xZpF6x1HL._AC_UF894,1000_QL80_.jpg"
+    "image": "https://www.refinery29.com/images/8454017.jpg"
   },
   {
     "title": "The Mandalorian",

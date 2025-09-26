@@ -1,59 +1,67 @@
-const renderShows = async () => {
-  try {
-    const response = await fetch('/shows');
-    const data = await response.json();
+if (document.getElementById("main-content")) {
+  const renderShows = async () => {
+    try {
+      const response = await fetch('/shows');
+      const data = await response.json();
 
-    const mainContent = document.getElementById('main-content');
-    mainContent.innerHTML = '';
-    mainContent.className = 'container grid gap-3';
+      const mainContent = document.getElementById('main-content');
+      mainContent.innerHTML = '';
 
-    if (data && data.length > 0) {
-      data.forEach(show => {
-        const card = document.createElement('article');
-        card.className = 'card';
+      const requestedUrl = window.location.pathname.split('/').pop();
+      if (requestedUrl === "" || requestedUrl === "index.html") {
+        mainContent.className = 'container grid gap-3';
+        data.forEach(show => {
+          const card = document.createElement('article');
 
-        const showImage = document.createElement('img');
-        showImage.src = show.image;
-        showImage.alt = show.title;
+          const showImage = document.createElement('img');
+          showImage.src = show.image;
+          showImage.alt = show.title;
 
-        const titleGroup = document.createElement('hgroup');
-        const title = document.createElement('h3');
-        title.textContent = show.title;
-        const meta = document.createElement('p');
-        meta.textContent = `⭐ ${show.rating} | Released: ${show.release_date}`;
-        titleGroup.appendChild(title);
-        titleGroup.appendChild(meta);
+          const titleGroup = document.createElement('hgroup');
+          const title = document.createElement('h3');
+          title.textContent = show.title;
+          const meta = document.createElement('p');
+          meta.textContent = `⭐ ${show.rating} | Released: ${show.release_date}`;
+          titleGroup.appendChild(title);
+          titleGroup.appendChild(meta);
 
-        const description = document.createElement('p');
-        description.textContent =
-          show.description.length > 120
-            ? show.description.slice(0, 120) + '…'
-            : show.description;
+          const description = document.createElement('p');
+          description.textContent =
+            show.description.length > 120
+              ? show.description.slice(0, 120) + '…'
+              : show.description;
 
-        const viewBtn = document.createElement('a');
-        viewBtn.textContent = 'View Details';
-        viewBtn.href = `/shows/${show.title.replace(/\s+/g, '-')}`;
-        viewBtn.setAttribute('role', 'button');
-        viewBtn.className = 'contrast';
+          const viewBtn = document.createElement('a');
+          viewBtn.textContent = 'View Details';
+          viewBtn.href = `/shows/${show.title.replace(/\s+/g, '-')}`;
+          viewBtn.setAttribute('role', 'button');
+          viewBtn.className = 'contrast';
 
-        card.appendChild(showImage);
-        card.appendChild(titleGroup);
-        card.appendChild(description);
-        card.appendChild(viewBtn);
+          card.appendChild(showImage);
+          card.appendChild(titleGroup);
+          card.appendChild(description);
+          card.appendChild(viewBtn);
 
-        mainContent.appendChild(card);
-      });
-    } else {
-      const message = document.createElement('h2');
-      message.textContent = 'No Shows Available 😞';
-      mainContent.appendChild(message);
+          mainContent.appendChild(card);
+        });
+        return;
+      }
+
+      const show = data.find(
+        s => s.title.replace(/\s+/g, '-') === requestedUrl
+      );
+
+      window.location.href = "/404.html";
+
+    } catch (err) {
+      console.error(err);
+      window.location.href = "/404.html";
     }
-  } catch (err) {
-    console.error(err);
+  };
 
-  }
-};
-renderShows();
+  renderShows();
+}
+
 
 const renderShow = async () => {
   const title = decodeURIComponent(window.location.href.split('/').pop())
