@@ -11,7 +11,7 @@ const showData = [
     "rating": 8.7,
     "release_date": "2016-07-15",
     "description": "A group of kids in a small town uncover government experiments and supernatural forces while searching for their missing friend.",
-    "image": "https://theculturednerd.org/wp-content/uploads/2020/03/stranger-1-cover.jpg"
+    "image": "https://m.media-amazon.com/images/M/MV5BOTU2YmM5ZjctOGVlMC00YTczLTljM2MtYjhlNGI5YWMyZjFkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
   },
   {
     "title": "Game of Thrones",
