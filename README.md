@@ -2,8 +2,7 @@
 
 Submitted by: Rico Chen
 
-About this web app: **App description here**
-
+About this web app: Displays popular TV shows along with their rating, release date, and description
 Time spent: 1 hours
 
 ## Required Features
